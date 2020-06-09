@@ -10,10 +10,11 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tvLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:text="Home page" />
+        android:text="Home page"
+        android:textColor="@color/colorWhite" />
 
 
 
