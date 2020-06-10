@@ -8,9 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.room.Room;
 
-import com.example.agile_phoneshoping.AppDatabase;
 import com.example.agile_phoneshoping.R;
 import com.example.agile_phoneshoping.fragment.CartFragment;
 import com.example.agile_phoneshoping.fragment.HomeFragment;

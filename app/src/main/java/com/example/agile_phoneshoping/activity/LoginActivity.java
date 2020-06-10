@@ -12,13 +12,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import com.example.agile_phoneshoping.AppDatabase;
+import com.example.agile_phoneshoping.User;
+import com.example.agile_phoneshoping.database.AppDatabase;
 import com.example.agile_phoneshoping.R;
-import com.example.agile_phoneshoping.UserDAO;
-import com.example.agile_phoneshoping.user;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,8 +24,9 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText edtPassword;
     private Button btnLogin;
     private TextView tvSignUp;
-    private UserDAO userDAO ;
     Intent intent;
+
+    //tạo biến để lưu data
     public  static  final  String SHARED_PREFS="SHAREDPREFS";
     public  static  final  String USERNAME="text";
 
@@ -37,16 +35,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //data
+        //com.example.agile_phoneshoping.data
         AppDatabase db = Room.databaseBuilder(this,
                 AppDatabase.class, "user.db").allowMainThreadQueries().build();
         initView();
-     db.userDAO().insert(new user(1,"nguyễn văn tú","tunvph",5555,"hà nam","tiền mặt","user"));
-List<user> result=db.userDAO().getAll();
 
-String a=result.get(0).name;
+        //test data
+     db.userDAO().insert(new User(1,"nguyễn văn tú","tunvph",5555,"hà nam","tiền mặt","user"));
+//List<user> result=db.userDAO().getAll();
+//String a=result.get(0).name;
+//Toast.makeText(getApplicationContext(),"name user là : "+a,Toast.LENGTH_SHORT).show();
 
-Toast.makeText(getApplicationContext(),"dd"+a,Toast.LENGTH_SHORT).show();
+
+
         // Login navigate
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,17 +77,17 @@ Toast.makeText(getApplicationContext(),"dd"+a,Toast.LENGTH_SHORT).show();
 
 
     }
+    //save data
     public void saveData(){
-        initView();
         SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS, MODE_PRIVATE );
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString(USERNAME,edtUsername.getText().toString());
         editor.apply();
 
 //        editor.commit();
-        String mail1=sharedPreferences.getString(USERNAME,"not found");
-        Log.e("biến", "saveData: "+mail1 );
-        Toast.makeText(getApplicationContext(),"user lưu là"+mail1,Toast.LENGTH_SHORT).show();
+        String userName=sharedPreferences.getString(USERNAME,"not found");
+        Log.e("user đăng nhập  là ", ":"+userName );
+        Toast.makeText(getApplicationContext(),"user đăng nhập  là "+userName,Toast.LENGTH_SHORT).show();
 
 
     }

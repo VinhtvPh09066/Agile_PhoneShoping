@@ -2,7 +2,6 @@ package com.example.agile_phoneshoping.fragment;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
-import android.net.http.SslCertificate;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,14 +13,11 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
-import com.example.agile_phoneshoping.AppDatabase;
+import com.example.agile_phoneshoping.User;
+import com.example.agile_phoneshoping.database.AppDatabase;
 import com.example.agile_phoneshoping.R;
-import com.example.agile_phoneshoping.activity.MainActivity;
-import com.example.agile_phoneshoping.user;
 
 import java.util.List;
-
-import javax.xml.namespace.QName;
 
 public class ProfileFragment extends Fragment {
 ImageView imageView1;
@@ -37,16 +33,16 @@ ImageView imageView1;
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         imageView1=view.findViewById(R.id.imageView1);
-//lấy data từ SharedPreferences
+//lấy com.example.agile_phoneshoping.data từ SharedPreferences
         AppDatabase db = Room.databaseBuilder(getContext(),
                 AppDatabase.class, "user.db").allowMainThreadQueries().build();
-      List<user> users=  db.userDAO().getUserByName("nguyễn văn tú");
+      List<User> users=  db.userDAO().getUserByName("nguyễn văn tú");
         String a=users.get(0).address;
 
-        Toast.makeText(getContext(),"data"+a,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "com/example/agile_phoneshoping/database" +a,Toast.LENGTH_SHORT).show();
         SharedPreferences preferences = getActivity().getSharedPreferences("SHAREDPREFS",getActivity().MODE_PRIVATE);
         String user_name = preferences.getString("text",null);
-        Log.e("tag data-- ------ ", "onCreateView: "+user_name );
+        Log.e("tag com.example.agile_phoneshoping.data-- ------ ", "onCreateView: "+user_name );
 
 
 
